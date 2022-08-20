@@ -1,0 +1,24 @@
+{
+  "name": "pbkdf2.js",
+  "version": "1.0.0",
+  "description": "Password-Based Key",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xkid1/pbkdf2.js.git"
+  },
+  "author": "Elmer T Alluad Jr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xkid1/pbkdf2.js/issues"
+  },
+  "homepage": "https://github.com/xkid1/pbkdf2.js#readme",
+  "devDependencies": {
+    "@types/node": "^18.7.8",
+    "eslint": "^8.22.0",
+    "typescript": "^4.7.4"
+  }
+}

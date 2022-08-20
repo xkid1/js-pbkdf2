@@ -1,0 +1,24 @@
+{
+    "env": {
+        "commonjs": true,
+        "es5": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking-without-any"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "sourceType": "module",
+        "ecmaVersion": 2018
+    },
+    "plugins": ["@typescript-eslint", "import"],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+    }
+}
