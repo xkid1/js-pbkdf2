@@ -1,10 +1,17 @@
 {
-  "name": "pbkdf2.js",
+  "name": "pbkdf2js",
   "version": "1.0.0",
   "description": "Password-Based Key",
-  "main": "index.js",
+  "main": "./dist/src/index.js",
+  "keywords": [
+    "pbkdf2",
+    "pbkdf2js",
+    "pbkdf2.js"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/typescript/bin/tsc --build tsconfig.json",
+    "serve": "./node_modules/typescript/bin/tsc --watch -p tsconfig.json",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,9 +23,19 @@
     "url": "https://github.com/xkid1/pbkdf2.js/issues"
   },
   "homepage": "https://github.com/xkid1/pbkdf2.js#readme",
+  "types": "global.d.ts",
+  "tsd": {
+    "directory": "./global.d.ts"
+  },
+  "engines": {
+    "node": ">=16.13.0"
+  },
   "devDependencies": {
+    "@types/jest": "^28.1.7",
     "@types/node": "^18.7.8",
     "eslint": "^8.22.0",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.7.4"
   }
 }
