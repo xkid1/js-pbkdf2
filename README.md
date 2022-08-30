@@ -5,6 +5,7 @@
 [![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg?event=registry_package)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml)
 [![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg?event=fork)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml)
 
+
 Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.
 
 
@@ -13,14 +14,19 @@ Password-Based Key: This library provides the functionality to encrypt and decry
 `npm i -D pbkdf2js`
 
 
-## Usage
+## Usage to encrypt
 
 ```
 import pbkdf2js from 'pbkdf2js';
 
 const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
 
-conso.log(encrypt)
+```
+
+## Usage to decrypt
+
+```
+import pbkdf2js from 'pbkdf2js';
 
 const decrypt = await pbkdf2js.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
 
