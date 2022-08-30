@@ -2,7 +2,8 @@
     "env": {
         "commonjs": true,
         "es5": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "extends": [
         "eslint:recommended",
@@ -17,8 +18,46 @@
         "sourceType": "module",
         "ecmaVersion": 2018
     },
-    "plugins": ["@typescript-eslint", "import"],
+    "plugins": ["@typescript-eslint", "import", "jest"],
     "rules": {
-        "@typescript-eslint/no-unused-vars": "off"
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": false,
+                "variables": false
+            }
+        ],
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-var-declaration": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@typescript-eslint/no-console": "off",
+        "import/no-extraneous-dependencies": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".ts"]
+            },
+            "typescript": {
+                "alwaysTryTypes": true,
+                "directory": "./src",
+                "project": "./tsconfig.json"
+            }
+        }
     }
 }
