@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "types": ["node"],
+        "types": ["node", "jest"],
         "baseUrl": ".",
         "target": "es5",
         "allowJs": true,
@@ -11,7 +11,7 @@
         "allowSyntheticDefaultImports": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
+        "noEmit": false,
         "noEmitOnError": true,
         "strictNullChecks": true,
         "noImplicitReturns": true,
@@ -20,10 +20,13 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "strictBindCallApply": true,
+        "removeComments": false,
+        "outDir": "dist",
+        "rootDir": ".",
         "paths": {
             "~/*": ["./*"]
         }
     },
     "include": ["**/*.ts"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "**/*.d.ts", "test/*.ts", "jest.config.ts"]
 }
