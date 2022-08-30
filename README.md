@@ -28,3 +28,12 @@ conso.log(decrypt)
 
 ```
 
+## Status
+| Project               | Status                                                       | Description                                             |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
+| [pbkdf2js]          | [![pbkdf2js-status][pbkdf2js-package]                   | Password-Based Key encrypt and decrypt                      |
+
+[pbkdf2js]: https://github.com/xkid1/pbkdf2.js
+[pbkdf2js-package]: https://npmjs.com/package/pbkdf2js
+[pbkdf2js-status]: https://img.shields.io/npm/v/vue-router.svg
+
