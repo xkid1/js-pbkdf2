@@ -1,5 +1,5 @@
 {
-  "name": "pbkdf2.js",
+  "name": "@vkings1/pbkdf2.js",
   "version": "1.0.0",
   "description": "Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.",
   "main": "./dist/src/index.js",
