@@ -3,6 +3,7 @@ const { webcrypto } = crypto;
 
 interface PBKDF2Interface {
     encryptData: (password: string, data: string) => Promise<string>;
+    decryptData: (password: string, data: string) => Promise<string>;
 }
 /**
  * PBKDF2 is a key derivation function that can be used to derive keys from a password.
@@ -26,45 +27,65 @@ class PBKDF2JS implements PBKDF2Interface {
      * @param password - password must be required for encrypt and decrypt
      * @param data - The data must be Json string for encrypt
      */
-    async encryptData(password: string, data: string): Promise<any> {
-        let result: string = '';
-
-        try {
-            if (password === '' || data === '') {
-                this.errorType('NoPasswordData');
-            }
-            if (password === '') {
-                this.errorType('NoPassword');
-            }
-            if (data === '') {
-                this.errorType('NoData');
-            }
-            if (password && data) {
-                JSON.parse(data);
-                const passkey = await this.passkey(password);
-                const aesKey = await this.aesKey(passkey);
-                const dataBuffer = this.stringToBuffer(data);
-                const resultBuffer = await this.aesEncrypt(aesKey, dataBuffer);
-                result = this.bufferToBase64(resultBuffer);
-            }
-            return result;
-        } catch (error) {
-            // let err = error = this.errorIfomation(error);
-            //    this.errorType(error.name);ss
-            throw new Error('PBKDF2JS error');
+    encryptData(password: string, data: string): Promise<string> {
+        if (password === '' && data === '') {
+            throw new Error('password and data must be required');
         }
+        if (password === '') {
+            throw new Error('password must be required');
+        }
+        if (data === '') {
+            throw new Error('data must be required');
+        }
+        return new Promise(async (resolve, reject) => {
+            try {
+                if (password && data) {
+                    const passkey = await this.passkey(password);
+                    const aesKey = await this.aesKey(passkey);
+                    const dataBuffer = this.stringToBuffer(data);
+                    const resultBuffer = await this.aesEncrypt(
+                        aesKey,
+                        dataBuffer
+                    );
+                    resolve(this.bufferToBase64(resultBuffer));
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
     /**
      * decrypt data, return string
      * @param password - password must be required for decrypt
      * @param data - data for decrypt
      */
-    async decryptData(assword: string, data: string): Promise<void> {
-        try {
-            //
-        } catch (error: any) {
-            throw this.errorType(error.name);
+    decryptData(password: string, data: string): Promise<string> {
+        if (password === '' && data === '') {
+            throw new Error('password and data must be required');
         }
+        if (password === '') {
+            throw new Error('password must be required');
+        }
+        if (data === '') {
+            throw new Error('data must be required');
+        }
+
+        return new Promise(async (resolve, reject) => {
+            try {
+                if (password && data) {
+                    const passkey = await this.passkey(password);
+                    const aesKey = await this.aesKey(passkey);
+                    const dataBuffer = this.base64ToBuffer(data);
+                    const resultBuffer = await this.aesDecrypt(
+                        aesKey,
+                        dataBuffer
+                    );
+                    resolve(this.bufferToString(resultBuffer));
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 
     //string to buffer
@@ -90,7 +111,10 @@ class PBKDF2JS implements PBKDF2Interface {
     }
     //decode bass64 to buffer
     private base64ToBuffer(base64: string): ArrayBuffer {
-        const binaryString = window.atob(base64);
+        const binaryString =
+            typeof window !== 'undefined'
+                ? window.atob(base64)
+                : Buffer.from(base64, 'base64').toString('binary');
         const len = binaryString.length;
         const bytes = new Uint8Array(len);
         for (let i = 0; i < len; i++) {
@@ -142,92 +166,13 @@ class PBKDF2JS implements PBKDF2Interface {
             data
         );
     }
-
-    private errorType(error: string): void {
-        let Error: any;
-        switch (error) {
-            case 'NotSupportedError':
-                Error = this.errorIfomation({
-                    name: 'NotSupportedError',
-                    value: 'This browser does not support AES-CBC',
-                });
-                break;
-            case 'InvalidAccessError':
-                this.errorIfomation({
-                    name: 'InvalidAccessError',
-                    value: 'The key is not accessible',
-                });
-                break;
-            case 'OperationError':
-                this.errorIfomation({
-                    name: 'OperationError',
-                    value: 'The operation is not permitted',
-                });
-                break;
-            case 'TypeError':
-                console.log('TypeError');
-                // throw new Error(
-                //     this.errorIfomation({
-                //         name: 'TypeError',
-                //         value: 'The algorithm is not supported',
-                //     })
-                // );
-                break;
-            case 'InvalidCharacterError':
-                this.errorIfomation({
-                    name: 'InvalidCharacterError',
-                    value: 'The character is not supported',
-                });
-                break;
-
-            case 'NoPasswordData':
-                throw this.errorIfomation({
-                    name: 'NoPasswordData',
-                    value: 'The password and data are required',
-                });
-                break;
-
-            case 'NoPassword':
-                this.errorIfomation({
-                    name: 'NoPassword',
-                    value: 'The password is required',
-                });
-                break;
-
-            case 'NoData':
-                this.errorIfomation({
-                    name: 'NoData',
-                    value: 'The data is required',
-                });
-                break;
-            case 'SyntaxError':
-                new Error(
-                    this.errorIfomation({
-                        name: 'SyntaxError',
-                        value: 'The data is not valid as JSON',
-                    })
-                );
-                break;
-
-            default:
-                break;
-        }
-    }
-    private errorIfomation({
-        name,
-        value,
-    }: {
-        name: string;
-        value: string;
-    }): any {
-        return Object.create(null, {
-            [name]: {
-                value: value,
-                writable: false,
-                enumerable: true,
-                configurable: false,
-            },
-        });
+    //aes decrypt
+    private async aesDecrypt(aesKey: CryptoKey, data: ArrayBuffer) {
+        return await this.isCrypto.subtle.decrypt(
+            { name: 'AES-CBC', iv: this.iv },
+            aesKey,
+            data
+        );
     }
 }
 
