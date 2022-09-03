@@ -22,3 +22,21 @@ jobs:
             Please refer to the [README](https://github.com/xkid1/pbkdf2.js/blob/main/README.md) for details.
           draft: false
           prerelease: false
+          
+      - name: Copy dist folder
+        run: cp -r dist/ ./src/
+      - name: Commit changes
+        run: |
+          git config --local user.email "
+          git config --local user.name "xkid1"
+          git add .
+          git commit -m "Update dist folder"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
+
+
+
