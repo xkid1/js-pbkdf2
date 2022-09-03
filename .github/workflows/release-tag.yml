@@ -4,15 +4,14 @@ on:
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
-  build:
-    name: Create Release
+  build:    
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code        
-      - uses: actions/checkout@main
+        uses: actions/checkout@main
       - name: Create Release for Tag
-        id: release-tag
-        uses: xkid1/release-tag@main
+        id: create_release
+        uses: xkid1/create-release@main
         env:
           GITHUB_TOKEN: ${{ secrets.PBKDF2_RELEASE }}
         with:
