@@ -23,6 +23,16 @@ const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', JSON.string
 
 ```
 
+## OR
+
+```
+import pbkdf2js from 'pbkdf2js';
+
+const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', 'any sample');
+
+```
+
+
 ## Usage to decrypt
 
 ```
