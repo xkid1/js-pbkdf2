@@ -21,20 +21,20 @@ jobs:
         run: npm run build 
       - name: Log
         run: ls
-      - name: Copy dist folder
-        run: cp -r dist/ ./src/
-      - name: Commit changes
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Update dist folder"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: true
+      # - name: Copy dist folder
+      #   run: cp -r dist/ ./src/
+      # - name: Commit changes
+      #   run: |
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add .
+      #     git commit -m "Update dist folder"
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: main
+      #     force: true
       - name: Release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
