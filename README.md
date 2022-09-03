@@ -1,19 +1,19 @@
-# pbkdf2.js
+# pbkdf2js.js
 
-[![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml) [![Create Release](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml) [![publish](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml)
+[![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml) 
 
 Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.
 
 
 # Installation
 
-`npm i -D pbkdf2js`
+`npm i -D pbkdf2js.js`
 
 
 ## Usage to encrypt
 
 ```
-import pbkdf2js from 'pbkdf2js';
+import pbkdf2js from 'pbkdf2js.js';
 
 const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
 
@@ -22,7 +22,7 @@ const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', JSON.string
 ## OR
 
 ```
-import pbkdf2js from 'pbkdf2js';
+import pbkdf2js from 'pbkdf2js.js';
 
 const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', 'any sample');
 
@@ -32,7 +32,7 @@ const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', 'any sample
 ## Usage to decrypt
 
 ```
-import pbkdf2js from 'pbkdf2js';
+import pbkdf2js from 'pbkdf2js.js';
 
 const decrypt = await pbkdf2js.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
 
@@ -46,6 +46,6 @@ conso.log(decrypt)
 | [pbkdf2js]          | [![pbkdf2js-status][pbkdf2js-package]                   | Password-Based Key encrypt and decrypt                      |
 
 [pbkdf2js]: https://github.com/xkid1/pbkdf2.js
-[pbkdf2js-package]: https://npmjs.com/package/pbkdf2js
-[pbkdf2js-status]: https://img.shields.io/npm/v/vue-router.svg
+[pbkdf2js-package]: https://npmjs.com/package/pbkdf2js.js
+[pbkdf2js-status]: https://img.shields.io/npm/v/pbkdf2js.js
 
