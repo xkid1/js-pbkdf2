@@ -7,8 +7,25 @@ jobs:
   release-tag:    
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    steps:                   
-      - name: Checkout code        
+    steps:  
+      - name: Set up build environment                          
+        uses: actions/checkout@main
+      - name: Node.js setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'        
+      - name: Install dependencies
+        run: npm i
+      - name: Test
+        run: npm run test
+      - name: Build package
+        run: npm run build
+      - name: Publish package 
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PBKDF2_SECRET }}        
+      - name: Set release version        
         uses: actions/checkout@master
       - name: Create Release for Tag
         id: create_release
