@@ -13,19 +13,6 @@ jobs:
       - name: Create Release for Tag
         id: create_release
         uses: actions/create-release@latest
-      # - name: Node.js setup
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 16          
-      # - name: Install dependencies        
-      #   run: npm i
-      # - name: Test
-      #   run: npm run test
-      # - name: Build package
-      #   run: npm run build 
-      # - name: Log
-      #   run: ls    
-      - name: Release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -35,8 +22,6 @@ jobs:
             Please refer to the [README](https://github.com/xkid1/pbkdf2.js/blob/main/README.md) for details.
           draft: false
           prerelease: false
-
-
 
 
 
