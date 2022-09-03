@@ -21,7 +21,9 @@ jobs:
       - name: Build package
         run: npm run build 
       - name: list files
-        run: ls         
+        run: ls
+      - name: Copy dist folder to release folder
+        run: cp -r dist release                         
       - name: Checkout code        
         uses: actions/checkout@master
       - name: Create Release for Tag
