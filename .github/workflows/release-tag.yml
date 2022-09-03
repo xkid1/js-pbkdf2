@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@main
       - name: Create Release for Tag
         id: create_release
-        uses: xkid1/create-release@main
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PBKDF2_RELEASE }}
         with:
