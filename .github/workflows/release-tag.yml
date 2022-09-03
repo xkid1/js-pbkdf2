@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:        
       - name: Checkout code        
-        uses: actions/checkout@main
+        uses: actions/checkout@master
       - name: Create Release for Tag
         id: create_release
-        uses: actions/create-release@main
+        uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.PBKDF2_RELEASE }}
         with:
