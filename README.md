@@ -2,7 +2,7 @@
 
 [![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml) [![Create Release](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml/badge.svg?branch=main)](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml) [![publish](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml)
 
-Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.
+Password-Based Key: This library provides the functionality, and required a password to encrypt and decrypt data, can be use from frontend and backend. It can also send the encrypted data through http request.
 
 
 # Installation
@@ -40,6 +40,27 @@ const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.string
 const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
 
 const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA==');
+
+```
+
+## Sent http request
+
+```
+import JsPbkdf2 from 'js-pbkdf2';
+
+const jsPbkdf2 = new JsPbkdf2(crypto);
+
+const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({userName: 'example', password: 'sample'}));
+
+fetch('https://127.0.0.1/api/sample', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    },
+    body: JSON.stringify(encrypt),    
+})
+
 
 ```
 
