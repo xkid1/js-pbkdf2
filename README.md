@@ -7,45 +7,47 @@ Password-Based Key: This library provides the functionality to encrypt and decry
 
 # Installation
 
-`npm i -D pbkdf2js.js`
+`npm i js-pbkdf2`
 
 
-## Usage to encrypt
-
-```
-import pbkdf2js from 'pbkdf2js.js';
-
-const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
+## Usage to encrypt and decrypt from frontend
 
 ```
+import JsPbkdf2 from 'js-pbkdf2';
 
-## OR
+const jsPbkdf2 = new JsPbkdf2(crypto);
 
-```
-import pbkdf2js from 'pbkdf2js.js';
+const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
 
-const encrypt = await pbkdf2js.encryptData('process.env.SECRET_KEY', 'any sample');
+const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
+
+const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
+
 
 ```
 
 
-## Usage to decrypt
+
+## Usage to encrypt and decrypt backend
 
 ```
-import pbkdf2js from 'pbkdf2js.js';
+import JsPbkdf2 from 'js-pbkdf2';
+import {webcrypto} from 'crypto';
+const jsPbkdf2 = new JsPbkdf2(webcrypto);
 
-const decrypt = await pbkdf2js.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
+const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
 
-conso.log(decrypt)
+const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
+
+const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
 
 ```
 
 ## Status
 | Project               | Status                                                       | Description                                             |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
-| [pbkdf2js]          | [![pbkdf2js-status][pbkdf2js-package]                   | Password-Based Key encrypt and decrypt                      |
+| [jsPbkdf2]            | [![jsPbkdf2-status]][jsPbkdf2-package]                   | Password-Based Key encrypt and decrypt                      |
 
-[pbkdf2js]: https://github.com/xkid1/pbkdf2.js
-[pbkdf2js-package]: https://npmjs.com/package/pbkdf2js.js
-[pbkdf2js-status]: https://img.shields.io/npm/v/pbkdf2js.js
-
+[jsPbkdf2]: https://github.com/xkid1/pbkdf2.js
+[jsPbkdf2-package]: https://www.npmjs.com/package/js-pbkdf2
+[jsPbkdf2-status]: https://img.shields.io/npm/v/js-pbkdf2

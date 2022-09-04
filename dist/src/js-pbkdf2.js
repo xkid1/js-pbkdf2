@@ -35,23 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var crypto_1 = __importDefault(require("crypto"));
-var webcrypto = crypto_1.default.webcrypto;
 /**
  * PBKDF2 is a key derivation function that can be used to derive keys from a password.
  * It can be useda password based key derivation function (PBKDF2) or a password based key stretching function (PBKDF2-HMAC).
  * and it can be used from the frontend or the backend. to encrypt and decrypt data.
+ * @param isCrypto  - reuired to determine if it is a browser or nodejs
+ * @function encryptData - encrypt data with a password
+ * @function decryptData - decrypt data with a password
  */
-var PBKDF2JS = /** @class */ (function () {
-    function PBKDF2JS() {
-        this.isCrypto =
-            typeof window !== 'undefined'
-                ? window.crypto
-                : webcrypto;
+var JsPbkdf2 = /** @class */ (function () {
+    function JsPbkdf2(isCrypto) {
+        this.isCrypto = isCrypto;
         this.salt = new Uint8Array(16).buffer;
         this.iv = new Uint8Array(16).buffer;
     }
@@ -60,7 +55,7 @@ var PBKDF2JS = /** @class */ (function () {
      * @param password - password must be required for encrypt and decrypt
      * @param data - The data must be Json string for encrypt
      */
-    PBKDF2JS.prototype.encryptData = function (password, data) {
+    JsPbkdf2.prototype.encryptData = function (password, data) {
         var _this = this;
         if (password === '' && data === '') {
             throw new Error('password and data must be required');
@@ -105,7 +100,7 @@ var PBKDF2JS = /** @class */ (function () {
      * @param password - password must be required for decrypt
      * @param data - data for decrypt
      */
-    PBKDF2JS.prototype.decryptData = function (password, data) {
+    JsPbkdf2.prototype.decryptData = function (password, data) {
         var _this = this;
         if (password === '' && data === '') {
             throw new Error('password and data must be required');
@@ -145,8 +140,12 @@ var PBKDF2JS = /** @class */ (function () {
             });
         }); });
     };
-    //string to buffer
-    PBKDF2JS.prototype.stringToBuffer = function (str) {
+    /**
+     * String to buffer
+     * @param str - string
+     * @returns
+     */
+    JsPbkdf2.prototype.stringToBuffer = function (str) {
         var buf = new ArrayBuffer(str.length);
         var bufView = new Uint8Array(buf);
         for (var i = 0; i < str.length; i++) {
@@ -154,20 +153,28 @@ var PBKDF2JS = /** @class */ (function () {
         }
         return buf;
     };
-    //fontend buffer to base64
-    PBKDF2JS.prototype.bufferToBase64 = function (buf) {
+    /**
+     * ArrayBuffer to base64
+     * @param buf - ArrayBuffer
+     * @returns
+     */
+    JsPbkdf2.prototype.bufferToBase64 = function (buf) {
         var bytes = new Uint8Array(buf);
         var len = bytes.byteLength;
         var base64 = '';
-        for (var i = 0; i < len; i += 3) {
+        for (var i = 0; i < len; i++) {
             base64 += String.fromCharCode(bytes[i]);
         }
         return typeof window !== 'undefined'
             ? window.btoa(base64)
             : Buffer.from(buf).toString('base64');
     };
-    //decode bass64 to buffer
-    PBKDF2JS.prototype.base64ToBuffer = function (base64) {
+    /**
+     * String to buffer
+     * @param base64 - base64 string
+     * @returns
+     */
+    JsPbkdf2.prototype.base64ToBuffer = function (base64) {
         var binaryString = typeof window !== 'undefined'
             ? window.atob(base64)
             : Buffer.from(base64, 'base64').toString('binary');
@@ -178,8 +185,12 @@ var PBKDF2JS = /** @class */ (function () {
         }
         return bytes.buffer;
     };
-    //buffer to string
-    PBKDF2JS.prototype.bufferToString = function (buf) {
+    /**
+     * ArrayBuffer to string
+     * @param buf - ArrayBuffer
+     * @returns
+     */
+    JsPbkdf2.prototype.bufferToString = function (buf) {
         var bytes = new Uint8Array(buf);
         var len = bytes.byteLength;
         var str = '';
@@ -188,8 +199,12 @@ var PBKDF2JS = /** @class */ (function () {
         }
         return str;
     };
-    //passkey
-    PBKDF2JS.prototype.passkey = function (password) {
+    /**
+     * Passkey
+     * @param password
+     * @returns
+     */
+    JsPbkdf2.prototype.passkey = function (password) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -199,8 +214,12 @@ var PBKDF2JS = /** @class */ (function () {
             });
         });
     };
-    //aesKey
-    PBKDF2JS.prototype.aesKey = function (passkey) {
+    /**
+     * AES key
+     * @param passkey
+     * @returns
+     */
+    JsPbkdf2.prototype.aesKey = function (passkey) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -215,8 +234,13 @@ var PBKDF2JS = /** @class */ (function () {
             });
         });
     };
-    //aes encrypt
-    PBKDF2JS.prototype.aesEncrypt = function (aesKey, data) {
+    /**
+     * AES encrypt
+     * @param aesKey
+     * @param data
+     * @returns
+     */
+    JsPbkdf2.prototype.aesEncrypt = function (aesKey, data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -226,8 +250,13 @@ var PBKDF2JS = /** @class */ (function () {
             });
         });
     };
-    //aes decrypt
-    PBKDF2JS.prototype.aesDecrypt = function (aesKey, data) {
+    /**
+     * AES decrypt
+     * @param aesKey
+     * @param data
+     * @returns
+     */
+    JsPbkdf2.prototype.aesDecrypt = function (aesKey, data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -237,6 +266,6 @@ var PBKDF2JS = /** @class */ (function () {
             });
         });
     };
-    return PBKDF2JS;
+    return JsPbkdf2;
 }());
-exports.default = PBKDF2JS;
+module.exports = JsPbkdf2;

@@ -1,24 +1,19 @@
-import crypto from 'crypto';
-const { webcrypto } = crypto;
+import { PBKDF2Interface } from '~/global';
 
-interface PBKDF2Interface {
-    encryptData: (password: string, data: string) => Promise<string>;
-    decryptData: (password: string, data: string) => Promise<string>;
-}
 /**
  * PBKDF2 is a key derivation function that can be used to derive keys from a password.
  * It can be useda password based key derivation function (PBKDF2) or a password based key stretching function (PBKDF2-HMAC).
  * and it can be used from the frontend or the backend. to encrypt and decrypt data.
+ * @param isCrypto  - reuired to determine if it is a browser or nodejs
+ * @function encryptData - encrypt data with a password
+ * @function decryptData - decrypt data with a password
  */
-class PBKDF2JS implements PBKDF2Interface {
+class JsPbkdf2 implements PBKDF2Interface {
     private isCrypto: Crypto;
     private salt: ArrayBuffer;
     private iv: ArrayBuffer;
-    constructor() {
-        this.isCrypto =
-            typeof window !== 'undefined'
-                ? window.crypto
-                : (webcrypto as Crypto);
+    constructor(isCrypto: Crypto) {
+        this.isCrypto = isCrypto;
         this.salt = new Uint8Array(16).buffer;
         this.iv = new Uint8Array(16).buffer;
     }
@@ -87,8 +82,11 @@ class PBKDF2JS implements PBKDF2Interface {
             }
         });
     }
-
-    //string to buffer
+    /**
+     * String to buffer
+     * @param str - string
+     * @returns
+     */
     private stringToBuffer(str: string): ArrayBuffer {
         const buf = new ArrayBuffer(str.length);
         const bufView = new Uint8Array(buf);
@@ -97,19 +95,27 @@ class PBKDF2JS implements PBKDF2Interface {
         }
         return buf;
     }
-    //fontend buffer to base64
+    /**
+     * ArrayBuffer to base64
+     * @param buf - ArrayBuffer
+     * @returns
+     */
     private bufferToBase64(buf: ArrayBuffer): string {
         const bytes = new Uint8Array(buf);
         const len = bytes.byteLength;
         let base64 = '';
-        for (let i = 0; i < len; i += 3) {
+        for (let i = 0; i < len; i++) {
             base64 += String.fromCharCode(bytes[i]);
         }
         return typeof window !== 'undefined'
             ? window.btoa(base64)
             : Buffer.from(buf).toString('base64');
     }
-    //decode bass64 to buffer
+    /**
+     * String to buffer
+     * @param base64 - base64 string
+     * @returns
+     */
     private base64ToBuffer(base64: string): ArrayBuffer {
         const binaryString =
             typeof window !== 'undefined'
@@ -122,7 +128,11 @@ class PBKDF2JS implements PBKDF2Interface {
         }
         return bytes.buffer;
     }
-    //buffer to string
+    /**
+     * ArrayBuffer to string
+     * @param buf - ArrayBuffer
+     * @returns
+     */
     private bufferToString(buf: ArrayBuffer): string {
         const bytes = new Uint8Array(buf);
         const len = bytes.byteLength;
@@ -132,7 +142,11 @@ class PBKDF2JS implements PBKDF2Interface {
         }
         return str;
     }
-    //passkey
+    /**
+     * Passkey
+     * @param password
+     * @returns
+     */
     private async passkey(password: string): Promise<CryptoKey> {
         return await this.isCrypto.subtle.importKey(
             'raw',
@@ -142,7 +156,11 @@ class PBKDF2JS implements PBKDF2Interface {
             ['deriveKey']
         );
     }
-    //aesKey
+    /**
+     * AES key
+     * @param passkey
+     * @returns
+     */
     private async aesKey(passkey: CryptoKey): Promise<CryptoKey> {
         return await this.isCrypto.subtle.deriveKey(
             {
@@ -158,7 +176,12 @@ class PBKDF2JS implements PBKDF2Interface {
         );
     }
 
-    //aes encrypt
+    /**
+     * AES encrypt
+     * @param aesKey
+     * @param data
+     * @returns
+     */
     private async aesEncrypt(aesKey: CryptoKey, data: ArrayBuffer) {
         return await this.isCrypto.subtle.encrypt(
             { name: 'AES-CBC', iv: this.iv },
@@ -166,7 +189,12 @@ class PBKDF2JS implements PBKDF2Interface {
             data
         );
     }
-    //aes decrypt
+    /**
+     * AES decrypt
+     * @param aesKey
+     * @param data
+     * @returns
+     */
     private async aesDecrypt(aesKey: CryptoKey, data: ArrayBuffer) {
         return await this.isCrypto.subtle.decrypt(
             { name: 'AES-CBC', iv: this.iv },
@@ -176,4 +204,4 @@ class PBKDF2JS implements PBKDF2Interface {
     }
 }
 
-export default PBKDF2JS;
+module.exports = JsPbkdf2;
