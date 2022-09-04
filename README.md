@@ -21,7 +21,7 @@ const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.string
 
 const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
 
-const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
+const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA==');
 
 
 ```
@@ -39,7 +39,7 @@ const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.string
 
 const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
 
-const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA=='));
+const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA==');
 
 ```
 
