@@ -14,7 +14,9 @@
     "decrypt.js",
     "javascript pbkdf2",
     "pbkdf2 javascript",
-    "node pbkdf2"
+    "node pbkdf2",
+    "js-pbkdf2",
+    "js pbkdf2"
   ],
   "scripts": {
     "build": "./node_modules/typescript/bin/tsc --build tsconfig.json",
