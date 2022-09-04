@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xkid1/pbkdf2.js.git"
+    "url": "git+https://github.com/xkid1/js-pbkdf2.git"
   },
   "author": "Elmer T Alluad Jr",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xkid1/pbkdf2.js/issues"
+    "url": "https://github.com/xkid1/js-pbkdf2/issues"
   },
-  "homepage": "https://github.com/xkid1/pbkdf2.js#readme",
+  "homepage": "https://github.com/xkid1/js-pbkdf2#readme",
   "types": "global.d.ts",
   "tsd": {
     "directory": "./global.d.ts"
