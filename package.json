@@ -43,6 +43,9 @@
     "test",
     "global.d.ts"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "engines": {
     "node": ">=16.13.0"
   },
