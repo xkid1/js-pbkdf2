@@ -1,6 +1,8 @@
 # js-pbkdf2
 
 [![PBKDF2Js](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/main.yml) [![Create Release](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml/badge.svg?branch=main)](https://github.com/xkid1/pbkdf2.js/actions/workflows/release-tag.yml) [![publish](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml/badge.svg)](https://github.com/xkid1/pbkdf2.js/actions/workflows/publish.yml)
+[![LICENSE](https://img.shields.io/github/license/xkid1/js-pbkdf2.svg)](LICENSE)
+[![Featured on Openbase](https://badges.openbase.com/js/featured/js-pbkdf2.svg)](https://openbase.com/js/js-pbkdf2)
 
 Password-Based Key: This library provides the functionality, and required a password to encrypt and decrypt data, can be use from frontend and backend. It can also send the encrypted data through http request.
 
