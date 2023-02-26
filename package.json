@@ -1,9 +1,9 @@
 {
   "name": "js-pbkdf2",
-  "version": "1.0.5",
+  "version": "1.1.5",
   "description": "Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.",
-  "main": "./dist/src/js-pbkdf2.js",
-  "module": "./dist/src/js-pbkdf2.js",
+  "main": "dist/src/JsPbkdf2.js",
+  "module": "dist/src/JsPbkdf2.js",
   "keywords": [
     "pbkdf2",
     "pbkdf2js",
@@ -19,8 +19,8 @@
     "js pbkdf2"
   ],
   "scripts": {
-    "build": "./node_modules/typescript/bin/tsc --build tsconfig.json",
-    "serve": "./node_modules/typescript/bin/tsc --watch -p tsconfig.json",
+    "build": "tsc --build tsconfig.json",
+    "serve": "tsc --watch -p tsconfig.json",
     "test": "jest"
   },
   "repository": {
@@ -35,13 +35,10 @@
   "homepage": "https://github.com/xkid1/js-pbkdf2#readme",
   "types": "global.d.ts",
   "tsd": {
-    "directory": "./global.d.ts"
+    "directory": "global.d.ts"
   },
   "files": [
-    "dist/src/*js",
-    "src",
-    "test",
-    "global.d.ts"
+    "dist/"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
