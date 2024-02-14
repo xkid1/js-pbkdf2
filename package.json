@@ -2,8 +2,8 @@
   "name": "js-pbkdf2",
   "version": "1.1.5",
   "description": "Password-Based Key: This library provides the functionality to encrypt and decrypt data using password from frontend vice versa backend. It can send as encrypted to your http request the decrypt to the  frontend vice versa backend.",
-  "main": "dist/src/JsPbkdf2.js",
-  "module": "dist/src/JsPbkdf2.js",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
   "keywords": [
     "pbkdf2",
     "pbkdf2js",
