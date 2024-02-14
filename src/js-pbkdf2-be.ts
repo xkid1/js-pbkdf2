@@ -48,8 +48,8 @@ class PBKDF2BE extends Base {
           dataBuffer
         );
         resolve(this.instanceCommon.bufferToBase64(resultBuffer));
-      } catch (error) {
-        reject(error);
+      } catch (error: any) {
+        reject(error.message);
       }
     });
   }
