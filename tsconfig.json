@@ -1,33 +1,33 @@
 {
-    "compilerOptions": {
-        "types": ["node", "jest"],
-        "baseUrl": ".",
-        "target": "es5",
-        "allowJs": true,
-        "strict": true,
-        "esModuleInterop": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": false,
-        "noEmitOnError": true,
-        "strictNullChecks": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
-        "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
-        "strictBindCallApply": true,
-        "removeComments": false,
-        "resolveJsonModule": true,
-        "outDir": "dist",
-        "rootDir": ".",
-        "paths": {
-            "~/*": ["./*"]
-        }
-    },
-    "include": ["src/**/*.ts", "package.json", "README.md"],
-    "exclude": ["node_modules", "**/node_modules/*"]
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "target": "es6",
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "noEmitOnError": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictBindCallApply": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "paths": {
+      "~/*": ["./*"]
+    }
+  },
+  "include": ["src/**/*.ts", "package.json", "README.md"],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
