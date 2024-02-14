@@ -2,22 +2,20 @@ import PBKDF2BE from './js-pbkdf2-be';
 import JSPBKDF2FE from './js-pbkdf2-fe';
 
 interface InterfaceModulePackage {
-  encryptFE: Function;
-  decryptFE: Function;
-  encryptBE: Function;
-  decryptBE: Function;
+  encrypt: Function;
+  decrypt: Function;
 }
 
 const modulePackage = {} as InterfaceModulePackage;
 
 if (typeof window !== 'undefined') {
   const fe = new JSPBKDF2FE();
-  modulePackage.encryptFE = fe.encrypt;
-  modulePackage.decryptFE = fe.decrypt;
+  modulePackage.encrypt = fe.encrypt;
+  modulePackage.decrypt = fe.decrypt;
 } else {
   const be = new PBKDF2BE();
-  modulePackage.encryptBE = be.encrypt;
-  modulePackage.decryptBE = be.decrypt;
+  modulePackage.encrypt = be.encrypt;
+  modulePackage.decrypt = be.decrypt;
 }
 
 console.log('Module Package: ', modulePackage);

@@ -15,31 +15,25 @@ Password-Based Key: This library provides the functionality, and required a pass
 ## Usage to encrypt and decrypt from frontend
 
 ```
-import JsPbkdf2 from 'js-pbkdf2';
+import { encrypt, decrypt } from 'js-pbkdf2';
 
-const jsPbkdf2 = new JsPbkdf2(crypto);
+const encrypted = await encrypt('secret password', JSON.stringify({example: 'example'}));
 
-const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
+const encrypt2 = await encrypt('secret password', 'sample string');
 
-const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
-
-const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA==');
-
-
+const decrypted = await decrypt('secret password', 'WOwy8gEvHxEuLe0wl2A/cA==');
 ```
-
-
 
 ## Usage to encrypt and decrypt backend
 
 ```
-import JsPbkdf2 from 'js-pbkdf2';
-import {webcrypto} from 'crypto';
-const jsPbkdf2 = new JsPbkdf2(webcrypto);
+import { encrypt, decrypt } from 'js-pbkdf2';
 
-const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({example: 'example'}));
+const encrypted = await encrypt('secret password', JSON.stringify({example: 'example'}));
 
-const encrypt2 = await jsPbkdf2.encryptData('process.env.SECRET_KEY', 'sample string');
+const encrypt2 = await encrypt('process.env.SECRET_KEY', 'sample string');
+
+const buf = await encrypt('process.env.SECRET_KEY', JSON.stringify({ id: 1, name: 'test', buffer: Buffer.from('hello'), typeArr: new Uint8Array([1, 2, 3]),}));
 
 const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHxEuLe0wl2A/cA==');
 
@@ -48,11 +42,9 @@ const decrypt = await jsPbkdf2.decryptData('process.env.SECRET_KEY', 'WOwy8gEvHx
 ## Sent http request
 
 ```
-import JsPbkdf2 from 'js-pbkdf2';
+import { encrypt, decrypt } from 'js-pbkdf2';
 
-const jsPbkdf2 = new JsPbkdf2(crypto);
-
-const encrypt = await jsPbkdf2.encryptData('process.env.SECRET_KEY', JSON.stringify({userName: 'example', password: 'sample'}));
+const encrypted = await encrypt('secret password', JSON.stringify({userName: 'example', password: 'sample'}));
 
 fetch('https://127.0.0.1/api/sample', {
     method: 'POST',
@@ -60,10 +52,8 @@ fetch('https://127.0.0.1/api/sample', {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     },
-    body: JSON.stringify(encrypt),    
+    body: JSON.stringify(encrypted),    
 })
-
-
 ```
 
 ## Status

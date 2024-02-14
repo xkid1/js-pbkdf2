@@ -83,6 +83,37 @@ class Helper extends Base {
       data
     );
   }
+
+  /**
+   * Begin to encrypt
+   *
+   * @param password
+   * @param data
+   * @returns {Promise<string>}
+   */
+  async processToEncrypt(password: string, data: string): Promise<string> {
+    const passkey = await this.passkey(password);
+    const aesKey = await this.aesKey(passkey);
+    const dataBuffer = this.instanceCommon.stringToBuffer(data);
+    const resultBuffer = await this.aesEncrypt(aesKey, dataBuffer);
+    return this.instanceCommon.bufferToBase64(resultBuffer);
+  }
+
+  /**
+   * Begin to decrypt
+   *
+   * @param decrypt
+   * @param data
+   * @returns {Promise<string>}
+   */
+  async processToDencrypt(password: string, data: string): Promise<string> {
+    const passkey = await this.passkey(password);
+    const aesKey = await this.aesKey(passkey);
+    const dataBuffer = this.instanceCommon.base64ToBuffer(data);
+    const resultBuffer = await this.aesDecrypt(aesKey, dataBuffer);
+
+    return this.instanceCommon.bufferToString(resultBuffer);
+  }
 }
 
 export default Helper;

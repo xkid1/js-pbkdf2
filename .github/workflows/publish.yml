@@ -7,22 +7,20 @@ jobs:
     # if: github.event_name == 'release' && github.event.action == 'published'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code        
+      - name: Checkout code
         uses: actions/checkout@main
-      - name: Node.js setup
+      - name: Node.js setup 20.11.0
         uses: actions/setup-node@v1
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/                        
-      - name: Install dependencies        
+          node-version: 20.11.0
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
         run: npm i
       - name: Test
         run: npm run test
       - name: Build package
-        run: npm run build 
+        run: npm run build
       - name: Publish package
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PBKDF2_SECRET }}
- 
-

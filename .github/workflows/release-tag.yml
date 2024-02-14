@@ -2,13 +2,13 @@ name: Create Release
 on:
   push:
     tags:
-      - 'v*' 
+      - 'v*'
 jobs:
-  release-tag:    
+  release-tag:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    steps:      
-      - name: Set release version        
+    steps:
+      - name: Set release version
         uses: actions/checkout@master
       - name: Create Release for Tag
         id: create_release
@@ -22,6 +22,3 @@ jobs:
             Please refer to the [README](https://github.com/xkid1/pbkdf2.js/blob/main/README.md) for details.
           draft: false
           prerelease: false
-
-
-
