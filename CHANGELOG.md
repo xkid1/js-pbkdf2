@@ -1,3 +1,11 @@
+## 2.1.2 (2024-02-15)
+
+
+### Bug Fixes
+
+- **deps:** Change the main/module from ./dist/src/index.js to ./src/index.js npm registry
+
+
 ## [2.1.2](https://github.com/xkid1/js-pbkdf2/compare/v2.0.2...v2.1.2) (2024-02-15)
 
 ### Minor Changes
