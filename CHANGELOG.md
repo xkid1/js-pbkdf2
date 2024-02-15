@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/xkid1/js-pbkdf2/compare/v2.0.2...v2.1.2) (2024-02-15)
+
+### Minor Changes
+
+* **deps:** Remove the console from module
+
+
 ## [2.0.2](https://github.com/xkid1/js-pbkdf2/compare/v2.0.1...v2.0.2) (2024-02-15)
 
 ### Bug Fixes
