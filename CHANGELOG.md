@@ -1,3 +1,15 @@
+## [2.0.2](https://github.com/xkid1/js-pbkdf2/compare/v2.0.1...v2.0.2) (2024-02-15)
+
+### Bug Fixes
+
+* **deps:** No module to npm, including the files
+
+## [2.0.1](https://github.com/xkid1/js-pbkdf2/compare/v2.0.1...v2.0.2) (2024-02-15)
+
+### Bug Fixes
+* **deps:** No module to npm
+  
+
 ## [2.0.0](hhttps://github.com/xkid1/js-pbkdf2/compare/v1.1.5...v2.0.0) (2024-02-14)
 
 
