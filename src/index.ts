@@ -18,6 +18,4 @@ if (typeof window !== 'undefined') {
   modulePackage.decrypt = be.decrypt;
 }
 
-console.log('Module Package: ', modulePackage);
-
 module.exports = modulePackage;
