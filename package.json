@@ -49,7 +49,7 @@
     "CHANGELOG.md"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@xkid1:registry": "https://npm.pkg.github.com"
   },
   "engines": {
     "node": ">=20.11.0"
